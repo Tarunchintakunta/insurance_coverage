@@ -1,0 +1,32 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "frontend/package.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist"
+        }
+      },
+      {
+        "src": "api/**/*.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "/api/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/frontend/$1"
+      }
+    ],
+    "env": {
+      "SEPOLIA_RPC_URL": "@sepolia_rpc_url",
+      "PRIVATE_KEY": "@private_key",
+      "ETHERSCAN_API_KEY": "@etherscan_api_key",
+      "VERIFIED_ADDRESS": "0x081C18e85D09645CA64dBD1e4781135F5E54110f"
+    }
+  }
